@@ -42,9 +42,21 @@ app.get("/", (req, res) => {
 
 //        URI : Params
 app.post("/post", (req, res) => {
-    const {title,description} = req.body;
-    console.log(title,description);
-  res.send("Post Successful");
+  const { title, description } = req.body;
+  console.log(title, description);
+  if (title != "" || description != "") {
+    let newPost = User({
+      title: title,
+      description: description,
+    }
+      newPost
+      .save()
+      .then(()=> {
+        res.status(200).send("Post Successful 🥳");
+      })
+      .catch()
+    );
+  }
 });
 
 app.listen(port, () => {
