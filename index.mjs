@@ -4,6 +4,9 @@ import mongoose from "mongoose";
 
 const app = express();
 
+// call middleware
+app.use(express.json());
+
 let port = process.env.PORT || 3000;
 let URI = `mongodb+srv://atlas-monster:greek-Myth@cluster0.owvlg.mongodb.net/postDB?retryWrites=true&w=majority`;
 
@@ -39,8 +42,8 @@ app.get("/", (req, res) => {
 
 //        URI : Params
 app.post("/post", (req, res) => {
-  const { title, description } = req.params;
-  console.log(req.params.title);
+    const {title,description} = req.body;
+    console.log(title,description);
   res.send("Post Successful");
 });
 
