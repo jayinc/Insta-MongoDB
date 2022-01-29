@@ -43,20 +43,27 @@ app.get("/", (req, res) => {
 //        URI : Params
 app.post("/post", (req, res) => {
   const { title, description } = req.body;
-  console.log(title, description);
-  if (title != "" || description != "") {
-    let newPost = User({
-      title: title,
-      description: description,
-    }
-      newPost
-      .save()
-      .then(()=> {
-        res.status(200).send("Post Successful 🥳");
-      })
-      .catch()
-    );
+  console.log(title,description);
+    
+  if(title !='' || description != ''){
+    let newUserPost = new User(
+      {
+        title,
+        description,
+      }
+    )
+    newUserPost.save((err,save)=>{
+      if(!err){
+       return res.status(200).send("Post Successfully");
+      }
+      else{
+       return  res.status(400).send("Some Thing went Wrong")
+      }
+    })
   }
+ 
+ 
+  
 });
 
 app.listen(port, () => {
