@@ -37,9 +37,11 @@ app.get("/", (req, res) => {
   res.send("I am your Server");
 });
 
-app.post("/post" (req, res) => {
-  res.send("You posted auccessfully!!")
-});
+//        UIR : Params      
+app.post('/post',(req,res)=>{  
+ res.send("Post Successfully");
+  
+})
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
