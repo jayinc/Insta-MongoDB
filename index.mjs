@@ -31,17 +31,18 @@ let userSchema = mongoose.Schema({
   },
 });
 
-let User = new mongoose.model('User', userSchema)
+let User = new mongoose.model("User", userSchema);
 
 app.get("/", (req, res) => {
   res.send("I am your Server");
 });
 
-//        UIR : Params      
-app.post('/post',(req,res)=>{  
- res.send("Post Successfully");
-  
-})
+//        URI : Params
+app.post("/post", (req, res) => {
+  const { title, description } = req.params;
+  console.log(req.params.title);
+  res.send("Post Successful");
+});
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
