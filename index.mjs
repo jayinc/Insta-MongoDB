@@ -85,8 +85,29 @@ app.get("/posts", (req, res) => {
 });
 
 // Delete Post
-app.get("/post/:id", (req, res) => {
-  console.log(req.params);
+app.delete("/post/:id", (req, res) => {
+  User.deleteOne({ _id: req.params.id }, {}, (err) => {
+    if (!err) {
+      return res.send("Post Deleted Successfully");
+    } else {
+      return res.send("Some thing Wrong");
+    }
+  });
+});
+
+// Update Post
+app.put("/post/:id", (req, res) => {
+  User.findOneAndUpdate(
+    { _id: req.params.id },
+    { title: req.body.title, description: req.body.description },
+    (err) => {
+      if (!err) {
+        return res.send("Post Updated");
+      } else {
+        return res.send("Some thing Wrong");
+      }
+    }
+  );
 });
 
 app.listen(port, () => {
