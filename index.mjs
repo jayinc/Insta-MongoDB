@@ -59,7 +59,7 @@ app.post("/post", (req, res) => {
     newUserPost.save((err, save) => {
       if (!err) {
         return res.status(200).send(
-          `Posted Successfully! 🥳`
+          `Posted Successfully! 😎🪄`
           // \n You now have ${UserCount} posts now.
         );
       } else {
@@ -68,7 +68,7 @@ app.post("/post", (req, res) => {
     });
   } else {
     return res.json({
-      message: "Atleast give a title! 😑",
+      message: "Atleast give a title..😑",
     });
   }
 });
@@ -88,9 +88,9 @@ app.get("/posts", (req, res) => {
 app.delete("/post/:id", (req, res) => {
   User.deleteOne({ _id: req.params.id }, {}, (err) => {
     if (!err) {
-      return res.send("Post Deleted Successfully");
+      return res.send("Post Deleted Successfully 🙌");
     } else {
-      return res.send("Some thing Wrong");
+      return res.send("Couldn't delete post. Something went Wrong 😥");
     }
   });
 });
@@ -102,9 +102,9 @@ app.put("/post/:id", (req, res) => {
     { title: req.body.title, description: req.body.description },
     (err) => {
       if (!err) {
-        return res.send("Post Updated");
+        return res.send("Post Updated 😇");
       } else {
-        return res.send("Some thing Wrong");
+        return res.send("Something's wrong 😮");
       }
     }
   );
