@@ -93,9 +93,9 @@
         padding: 20px;
         background-color: rgba(128, 128, 128, 0.055);
         border-radius: 10px;
-        margin-left: 10px;
+        margin-left: 32px;
         margin-bottom: 10px;
-       
+        width: 470px;        
       }
 
       .feed:hover {
@@ -104,7 +104,9 @@
         border-radius: 10px;
         background-color: rgba(128, 128, 128, 0.281);
         box-sizing: content-box;
-        padding: 10px;
+        padding: 20px;
+    
+
       }
 
       .feedData {
@@ -224,9 +226,10 @@
                             <p id="postDesc">
                                ${desc}
                             </p>
-                            <span>${date}</span>
                             <br/>
-                            <span>${_id}</span>
+                            <span>${Date(date).toString()}</span>
+                            <br/>
+                           
                         </div>
                         <div class="feedBtnBox">
                             <button id="edit-btn"><i class="far fa-edit"></i></button>
