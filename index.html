@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
+    <!-- Axios CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>TweetDeck</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        display: flex;
+        width: 100%;
+        height: 100vh;
+      }
+      .post-feed {
+        /* border: 2px solid black; */
+        flex: 1;
+
+      }
+      .post {
+        /* border: 2px solid red; */
+        flex: 1.5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 12%;
+      }
+      input {
+        padding: 10px 20px;
+        margin: 10px 0px;
+        border-radius: 1px;
+        width: 450px;
+        border-radius: 5px;
+      }
+      .title-box,
+      .desc-box {
+        display: flex;
+        flex-direction: column;
+      }
+      label {
+        font-size: 1rem;
+        font-weight: 800;
+      }
+      textarea {
+        border-radius: 5px;
+      }
+      h1 {
+        font-size: 3rem;
+      }
+      .buttonBox {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 30px;
+      }
+      #btn-post,
+      #btn-update {
+        padding: 10px 20px;
+        width: 190px;
+        background-color: #3eaeff;
+        color: white;
+        margin: 10px 25px;
+        border: 1px solid white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .feed{
+          display: flex;
+          padding: 20px;
+          background-color: rgba(128, 128, 128, 0.055);
+          border-radius: 10px;
+         margin-left: 10px;
+         margin-bottom: 10px;
+      }
+      .feed:hover{
+         /* border: 2px solid gray; */
+         margin: 10px;
+         border-radius: 10px;
+         background-color: rgba(128, 128, 128, 0.281);
+         box-sizing: content-box;
+         padding: 10px;
+
+      }
+      .feedData{
+          flex: 3;
+      }
+      .feedBtnBox{
+          flex: 0.3;
+      }
+      #edit-btn , #delete-btn{
+        background-color: gray;
+        color: white;
+        border: none;
+        font-size: 1rem;
+        border-radius: 5px;
+        margin-left: 3px;
+        cursor: pointer;
+      }    
+      /* #postDesc{
+         
+      } */
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="post-feed">
+        <h1 style="text-align: center; margin-top: 20px; margin-bottom: 10px;">Post Feed</h1>
+        <table>
+          <tr>
+            <td>
+              <div class="feed">
+                <div class="feedData" >
+                    <h2 >Ista Clone</h2>
+                    <br>
+                    <p id="postDesc">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga
+                        corporis dolore odit nobis eaque asperiores ullam rem numquam
+                        blanditiis ex similique, mollitia a! Saepe neque minus eius
+                        accusantium eaque. Magni?
+                    </p>
+                </div>
+                <div class="feedBtnBox">
+                    <button id="edit-btn"><i class="far fa-edit"></i></button>
+                    <button id="delete-btn">
+                        <i class="far fa-trash-alt"></i>
+                    </div>
+                    </button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="feed">
+                <div class="feedData" >
+                    <h2 >Ista Clone</h2>
+                    <br>
+                    <p id="postDesc">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga
+                        corporis dolore odit nobis eaque asperiores ullam rem numquam
+                        blanditiis ex similique, mollitia a! Saepe neque minus eius
+                        accusantium eaque. Magni?
+                    </p>
+                </div>
+                <div class="feedBtnBox">
+                    <button id="edit-btn"><i class="far fa-edit"></i></button>
+                    <button id="delete-btn">
+                        <i class="far fa-trash-alt"></i>
+                    </div>
+                    </button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="feed">
+                <div class="feedData" >
+                    <h2 >Ista Clone</h2>
+                    <br>
+                    <p id="postDesc">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga
+                        corporis dolore odit nobis eaque asperiores ullam rem numquam
+                        blanditiis ex similique, mollitia a! Saepe neque minus eius
+                        accusantium eaque. Magni?
+                    </p>
+                </div>
+                <div class="feedBtnBox">
+                    <button id="edit-btn"><i class="far fa-edit"></i></button>
+                    <button id="delete-btn">
+                        <i class="far fa-trash-alt"></i>
+                    </div>
+                    </button>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="post">
+        <h1>Create Post</h1>
+        <div class="title-box">
+          <label for="title">Title :</label>
+          <input type="text" id="title" placeholder="Enter Title" required />
+        </div>
+        <div class="desc-box">
+          <label for="desc">Desc :</label>
+          <textarea name="descp" id="desc" cols="60" rows="10"></textarea>
+        </div>
+        <div class="buttonBox">
+          <button id="btn-post">Post</button>
+          <button id="btn-update">Update</button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    axios.get("")
+
+
+  </script>
+</html>
