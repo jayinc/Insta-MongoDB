@@ -176,7 +176,7 @@
         let newPost = { title: title.value, description: desc.value };
 
         axios
-          .post("https://first--server.herokuapp.com/post", newPost)
+          .post("https://tweet-desk-app.herokuapp.com/post", newPost)
           .then((res) => {
             console.log(res);
           })
@@ -195,7 +195,7 @@
 
     const getAllPosts = () => {
       axios
-        .get("https://first--server.herokuapp.com/posts")
+        .get("https://tweet-desk-app.herokuapp.com/posts")
         .then((res) => {
           let html = "";
           let data = res.data;
