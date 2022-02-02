@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
+    <!-- Axios CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>TweetDeck</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .container {
+        display: flex;
+        width: 100%;
+        height: 100vh;
+      }
+
+      .post-feed {
+        /* border: 2px solid black; */
+        flex: 1;
+        overflow-y: scroll;
+      }
+
+      .post {
+        /* border: 2px solid red; */
+        flex: 1.5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 12%;
+      }
+
+      input {
+        padding: 10px 20px;
+        margin: 10px 0px;
+        border-radius: 1px;
+        width: 450px;
+        border-radius: 5px;
+      }
+
+      .title-box,
+      .desc-box {
+        display: flex;
+        flex-direction: column;
+      }
+
+      label {
+        font-size: 1rem;
+        font-weight: 800;
+      }
+
+      textarea {
+        border-radius: 5px;
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 3rem;
+      }
+
+      .buttonBox {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 30px;
+      }
+
+      #btn-post,
+      #btn-update {
+        padding: 10px 20px;
+        width: 190px;
+        background-color: #3eaeff;
+        color: white;
+        margin: 10px 25px;
+        border: 1px solid white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .feed {
+        display: flex;
+        padding: 20px;
+        background-color: rgba(128, 128, 128, 0.055);
+        border-radius: 10px;
+        margin-left: 32px;
+        margin-bottom: 10px;
+        width: 470px;        
+      }
+
+      .feed:hover {
+        /* border: 2px solid gray; */
+        margin: 10px;
+        border-radius: 10px;
+        background-color: rgba(128, 128, 128, 0.281);
+        box-sizing: content-box;
+        padding: 20px;
+    
+
+      }
+
+      .feedData {
+        flex: 3;
+      }
+
+      .feedBtnBox {
+        flex: 0.3;
+      }
+
+      #edit-btn,
+      #delete-btn {
+        background-color: gray;
+        color: white;
+        border: none;
+        font-size: 1rem;
+        border-radius: 5px;
+        margin-left: 3px;
+        cursor: pointer;
+      }
+
+      /* #postDesc{
+         
+      } */
+
+     
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="post-feed">
+        <h1 style="text-align: center; margin-top: 20px; margin-bottom: 10px ">
+          Post Feed
+          <button id="btn-refresh"><i class="fas fa-sync-alt"></i></button>
+        </h1>
+        <table id="postTable"></table>
+      </div>
+      <div class="post">
+        <h1>Create Post</h1>
+        <div class="title-box">
+          <label for="title">Title :</label>
+          <input type="text" id="title" placeholder="Enter Title" required />
+        </div>
+        <div class="desc-box">
+          <label for="desc">Desc :</label>
+          <textarea name="descp" id="desc" cols="55" rows="10"></textarea>
+        </div>
+        <div class="buttonBox">
+          <button id="btn-update">Update</button>
+          <button id="btn-post">Post</button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    let postBtn = document.getElementById("btn-post");
+    let refreshBtn = document.getElementById("btn-refresh");
+
+    const createPost = () => {
+      let title = document.getElementById("title");
+      let desc = document.getElementById("desc");
+
+      console.log(title, desc);
+
+      if (title != "") {
+        let newPost = { title: title.value, description: desc.value };
+
+        axios
+          .post("https://tweet-desk-app.herokuapp.com/post", newPost)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+
+        title.value = " ";
+        desc.value = " ";
+      } else {
+        alert("Please Enter Title . Empty Title Not Allowed ! 🤦‍♂️");
+      }
+    };
+
+    postBtn.addEventListener("click", createPost);
+
+    const getAllPosts = () => {
+      axios
+        .get("https://tweet-desk-app.herokuapp.com/posts")
+        .then((res) => {
+          let html = "";
+          let data = res.data;
+          let postTable = document.getElementById("postTable");
+
+          for (let key in data) {
+            let title;
+            let desc;
+            let date;
+            let _id;
+
+            title = data[key].title;
+            desc = data[key].description;
+            date = data[key].createdOn;
+            _id = data[key]._id;
+
+            data.map((data,index)=>{
+                console.log(data,index)
+            })
+
+            html += `
+                <tr>
+                    <td>
+                    <div class="feed">
+                        <div class="feedData" >
+                            <h2 >${title}</h2>
+                            <br>
+                            <p id="postDesc">
+                               ${desc}
+                            </p>
+                            <br/>
+                            <span>${Date(date).toString()}</span>
+                            <br/>
+                           
+                        </div>
+                        <div class="feedBtnBox">
+                            <button id="edit-btn"><i class="far fa-edit"></i></button>
+                            <button id="delete-btn">
+                                <i class="far fa-trash-alt"></i>
+                            </div>
+                            </button>
+                    </div>
+                    </td>
+                </tr>
+          `;
+            postTable.innerHTML = html;
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    };
+
+    refreshBtn.addEventListener("click", getAllPosts);
+    getAllPosts();
+
+    const deletePost = ()=>{
+           
+    }
+  </script>
+</html>

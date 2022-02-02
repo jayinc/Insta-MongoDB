@@ -1,259 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
-      crossorigin="anonymous"
-    />
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Eagle+Lake&family=Nosifer&display=swap" rel="stylesheet" />
+    <!-- Font Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
     <!-- Axios CDN -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>TweetDeck</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+</head>
 
-      .container {
-        display: flex;
-        width: 100%;
-        height: 100vh;
-      }
+<body>
+    <div class="container-fluid" style="width: 100%; height: 100vh;">
+        <div class="row"
+        style=" font-size: 6rem; font-weight: bold; text-align: center; padding-top: 20px; margin: 15px 2px; border-radius: 20px;">
+        <div class="col">
+            <h1 style=" font-family: 'Nosifer', cursive; font-size: 2rem;">TweetDeck               
+            </h1>
 
-      .post-feed {
-        /* border: 2px solid black; */
-        flex: 1;
-        overflow-y: scroll;
-      }
-
-      .post {
-        /* border: 2px solid red; */
-        flex: 1.5;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-top: 12%;
-      }
-
-      input {
-        padding: 10px 20px;
-        margin: 10px 0px;
-        border-radius: 1px;
-        width: 450px;
-        border-radius: 5px;
-      }
-
-      .title-box,
-      .desc-box {
-        display: flex;
-        flex-direction: column;
-      }
-
-      label {
-        font-size: 1rem;
-        font-weight: 800;
-      }
-
-      textarea {
-        border-radius: 5px;
-        padding: 20px;
-      }
-
-      h1 {
-        font-size: 3rem;
-      }
-
-      .buttonBox {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 30px;
-      }
-
-      #btn-post,
-      #btn-update {
-        padding: 10px 20px;
-        width: 190px;
-        background-color: #3eaeff;
-        color: white;
-        margin: 10px 25px;
-        border: 1px solid white;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-
-      .feed {
-        display: flex;
-        padding: 20px;
-        background-color: rgba(128, 128, 128, 0.055);
-        border-radius: 10px;
-        margin-left: 32px;
-        margin-bottom: 10px;
-        width: 470px;        
-      }
-
-      .feed:hover {
-        /* border: 2px solid gray; */
-        margin: 10px;
-        border-radius: 10px;
-        background-color: rgba(128, 128, 128, 0.281);
-        box-sizing: content-box;
-        padding: 20px;
-    
-
-      }
-
-      .feedData {
-        flex: 3;
-      }
-
-      .feedBtnBox {
-        flex: 0.3;
-      }
-
-      #edit-btn,
-      #delete-btn {
-        background-color: gray;
-        color: white;
-        border: none;
-        font-size: 1rem;
-        border-radius: 5px;
-        margin-left: 3px;
-        cursor: pointer;
-      }
-
-      /* #postDesc{
-         
-      } */
-
-     
-    </style>
-  </head>
-
-  <body>
-    <div class="container">
-      <div class="post-feed">
-        <h1 style="text-align: center; margin-top: 20px; margin-bottom: 10px ">
-          Post Feed
-          <button id="btn-refresh"><i class="fas fa-sync-alt"></i></button>
-        </h1>
-        <table id="postTable"></table>
-      </div>
-      <div class="post">
-        <h1>Create Post</h1>
-        <div class="title-box">
-          <label for="title">Title :</label>
-          <input type="text" id="title" placeholder="Enter Title" required />
         </div>
-        <div class="desc-box">
-          <label for="desc">Desc :</label>
-          <textarea name="descp" id="desc" cols="55" rows="10"></textarea>
-        </div>
-        <div class="buttonBox">
-          <button id="btn-update">Update</button>
-          <button id="btn-post">Post</button>
-        </div>
-      </div>
+
     </div>
-  </body>
-  <script>
+        <div class="row" ">
+        <div class=" col-5" style="height: 100vh;">
+            <nav id="navbar-example2" class="navbar navbar-light bg-light px-3"
+                style="margin-top: 40px; margin-bottom: 20px;  padding: 20px 10px; border-radius: 10px;">
+                <a class="navbar-brand" href="#">
+                    <h2 style=" font-family: 'Nosifer', cursive; font-size: 2rem; padding-top: 10px;">Your Post Feed
+                    </h2>
+                </a>
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <button class="nav-link" id="btn-refresh"
+                            style="font-size: 1rem; cursor: pointer; background-color: #0dcaf0; color: white; border-radius: 30%; "><i
+                                class="fas fa-sync-alt"></i></button>
+                    </li>
+                </ul>
+            </nav>
+            <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example"
+                tabindex="0"
+                style="border: 1px solid gray; border-radius: 10px; padding: 20px;  height: 80%; overflow-y:scroll;"
+                id="postTable">
+            </div>
+        </div>
+        <div class="col" style="
+            height: 100vh;
+            /* border: 2px solid black; */
+            display: flex;
+            flex-direction: column;
+            /* padding-top: 1rem; */
+            padding: 0.5rem 2rem;
+          ">
+            <h1 style="
+              font-size: 6rem;
+              margin-bottom: 80px;
+              margin-top: 30px;
+              font-family: 'Nosifer', cursive;
+            ">
+                Create Post
+            </h1>
+            <div class="mb-3">
+                <label for="title" class="form-label"
+                    style="font-size: 1.5rem; font-family: 'Nosifer', cursive">Title</label>
+                <input type="email" class="form-control" id="title" placeholder="Enter Post Title"
+                    style="padding: 20px 15px; border-radius: 10px" />
+            </div>
+            <br>
+            <div class="mb-3">
+                <label for="desc" class="form-label"
+                    style="font-size: 1.5rem; font-family: 'Nosifer', cursive">Description</label>
+
+                <textarea class="form-control" id="desc" rows="10 "
+                    style="padding: 20px 15px; border-radius: 10px"></textarea>
+            </div>
+            <div class="row g-1">
+                <div class="col-md">
+                    <div class="form-floating" style="text-align: right; margin-top: 10px">
+
+                        <button type="button" class="btn btn-info" id="deleteAllPostBtn"
+                            style="margin: 10px; width: 20%; color: white; padding: 20px 10px; border-radius: 15px; ">
+                            Delete All Post
+
+                        </button>
+                        <button type="button" class="btn btn-info" id="btn-post"
+                            style="margin: 10px; width: 20%; color: white; padding: 20px 10px; border-radius: 15px;">
+                            Post
+                        </button>
+
+                        <button type="button" class="btn btn-info"
+                            style=" margin: 10px; width: 20%; color: white; padding: 20px 10px; border-radius: 15px;">
+                            Update
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row"
+        style=" height: 140px; text-align: center; border: 2px solid gray;  padding-top: 20px; margin: 15px 2px; border-radius: 20px;">
+        <div class="col">
+            <h1 style=" font-family: 'Nosifer', cursive; font-size: 2rem;">Develop By
+                <a href="https://github.com/MuhammadHamzaFarooq" target="_blanck">
+                    <img src="https://avatars.githubusercontent.com/u/56512212?v=4" width="100px" height="100px"
+                    alt="Muhammad hamza Farooq" style="border-radius: 50%;">
+                </a>
+                <a href="https://github.com/jayinc" target="_blanck"></a>
+                <img src="https://avatars.githubusercontent.com/u/12969720?v=4" width="100px" height="100px"
+                    alt="salil Bahi" style="border-radius: 50%;">
+                </a>
+            </h1>
+
+        </div>
+
+    </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</body>
+<script>
     let postBtn = document.getElementById("btn-post");
     let refreshBtn = document.getElementById("btn-refresh");
+    let deleteAllPostBtn = document.getElementById("deleteAllPostBtn");
 
     const createPost = () => {
-      let title = document.getElementById("title");
-      let desc = document.getElementById("desc");
+        let title = document.getElementById("title");
+        let desc = document.getElementById("desc");
 
-      console.log(title, desc);
+        console.log(title, desc);
 
-      if (title != "") {
-        let newPost = { title: title.value, description: desc.value };
+        if (title != "") {
+            let newPost = { title: title.value, description: desc.value };
 
-        axios
-          .post("https://tweet-desk-app.herokuapp.com/post", newPost)
-          .then((res) => {
-            console.log(res);
-          })
-          .catch((e) => {
-            console.log(e);
-          });
+            axios
+                .post("https://first--server.herokuapp.com/post", newPost)
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
 
-        title.value = " ";
-        desc.value = " ";
-      } else {
-        alert("Please Enter Title . Empty Title Not Allowed ! 🤦‍♂️");
-      }
+            title.value = " ";
+            desc.value = " ";
+        } else {
+            alert("Please Enter Title . Empty Title Not Allowed ! 🤦‍♂️");
+        }
     };
 
     postBtn.addEventListener("click", createPost);
 
     const getAllPosts = () => {
-      axios
-        .get("https://tweet-desk-app.herokuapp.com/posts")
-        .then((res) => {
-          let html = "";
-          let data = res.data;
-          let postTable = document.getElementById("postTable");
+        axios
+            .get("https://first--server.herokuapp.com/posts")
+            .then((res) => {
+                let html = "";
+                let data = res.data;
+                let postTable = document.getElementById("postTable");
 
-          for (let key in data) {
-            let title;
-            let desc;
-            let date;
-            let _id;
+                for (let key in data) {
+                    let title;
+                    let desc;
+                    let date;
+                    let _id;
 
-            title = data[key].title;
-            desc = data[key].description;
-            date = data[key].createdOn;
-            _id = data[key]._id;
+                    title = data[key].title;
+                    desc = data[key].description;
+                    date = data[key].createdOn;
+                    _id = data[key]._id;
 
-            data.map((data,index)=>{
-                console.log(data,index)
-            })
+                    data.map((data, index) => {
+                        console.log(data, index)
+                    })
 
-            html += `
+                    html += `
                 <tr>
                     <td>
-                    <div class="feed">
-                        <div class="feedData" >
-                            <h2 >${title}</h2>
-                            <br>
-                            <p id="postDesc">
-                               ${desc}
-                            </p>
-                            <br/>
-                            <span>${Date(date).toString()}</span>
-                            <br/>
-                           
-                        </div>
-                        <div class="feedBtnBox">
-                            <button id="edit-btn"><i class="far fa-edit"></i></button>
-                            <button id="delete-btn">
-                                <i class="far fa-trash-alt"></i>
-                            </div>
-                            </button>
+                        <div class="card border-success mb-3" style="max-width: 100%; border-radius: 10px;" id="postCard">
+                    <div class="card-body text-success">
+                        <h5 class="card-title">${title}</h5>
+                        <p class="card-text">${desc}</p>
+                        <p class="card-text">${Date(date).toString()}</p>
                     </div>
+                    <div class="card-header" style="cursor: pointer;"><span><i class="far fa-edit"
+                                style="margin-right: 20px;"></i></span> <span><i class="fas fa-trash"></i></span></div>
+                </div>
                     </td>
                 </tr>
           `;
-            postTable.innerHTML = html;
-          }
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+                    postTable.innerHTML = html;
+                }
+            })
+            .catch((e) => {
+                console.log(e);
+            });
     };
 
     refreshBtn.addEventListener("click", getAllPosts);
     getAllPosts();
 
-    const deletePost = ()=>{
-           
+    const deleteAllPost = () => {
+        axios.get("localhost:3000/posts").then((res)=>{
+            console.log(res)
+        })
+        .catch((e)=>{
+            console.log(e)
+        })
     }
-  </script>
+
+    deleteAllPostBtn.addEventListener('click',deleteAllPost)
+</script>
+
 </html>
