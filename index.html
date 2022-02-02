@@ -25,9 +25,9 @@
 <body>
     <div class="container-fluid" style="width: 100%; height: 100vh;">
         <div class="row"
-        style=" font-size: 6rem; font-weight: bold; text-align: center; padding-top: 20px; margin: 15px 2px; border-radius: 20px;">
+        style="  text-align: center; padding-top: 5px; margin: 5px 2px; border-radius: 20px; margin-bottom: 20px; margin-top: 20px;">
         <div class="col">
-            <h1 style=" font-family: 'Nosifer', cursive; font-size: 2rem;">TweetDeck               
+            <h1 style=" font-family: 'Nosifer', cursive; font-size: 3rem; padding: 20px 0px; border-radius: 10px; background-color: rgba(220, 220, 220, 0.335) ; border-width: 5px;">TWEET DECK              
             </h1>
 
         </div>
@@ -36,7 +36,7 @@
         <div class="row" ">
         <div class=" col-5" style="height: 100vh;">
             <nav id="navbar-example2" class="navbar navbar-light bg-light px-3"
-                style="margin-top: 40px; margin-bottom: 20px;  padding: 20px 10px; border-radius: 10px;">
+                style="margin-top: 5px; margin-bottom: 25px;  padding: 10px 10px; border-radius: 10px;">
                 <a class="navbar-brand" href="#">
                     <h2 style=" font-family: 'Nosifer', cursive; font-size: 2rem; padding-top: 10px;">Your Post Feed
                     </h2>
@@ -64,25 +64,24 @@
             padding: 0.5rem 2rem;
           ">
             <h1 style="
-              font-size: 6rem;
-              margin-bottom: 80px;
-              margin-top: 30px;
+              font-size: 3rem;
+              margin-bottom:5px;
+              margin-top: 5x;
               font-family: 'Nosifer', cursive;
             ">
                 Create Post
             </h1>
             <div class="mb-3">
                 <label for="title" class="form-label"
-                    style="font-size: 1.5rem; font-family: 'Nosifer', cursive">Title</label>
+                    style="font-size: 1.5rem; font-family: 'Nosifer', cursive ; margin-top: 45px;">Title</label>
                 <input type="email" class="form-control" id="title" placeholder="Enter Post Title"
                     style="padding: 20px 15px; border-radius: 10px" />
             </div>
-            <br>
             <div class="mb-3">
                 <label for="desc" class="form-label"
                     style="font-size: 1.5rem; font-family: 'Nosifer', cursive">Description</label>
 
-                <textarea class="form-control" id="desc" rows="10 "
+                <textarea class="form-control" id="desc" rows="5 "
                     style="padding: 20px 15px; border-radius: 10px"></textarea>
             </div>
             <div class="row g-1">
@@ -112,13 +111,13 @@
         style=" height: 140px; text-align: center; border: 2px solid gray;  padding-top: 20px; margin: 15px 2px; border-radius: 20px;">
         <div class="col">
             <h1 style=" font-family: 'Nosifer', cursive; font-size: 2rem;">Develop By
-                <a href="https://github.com/MuhammadHamzaFarooq" target="_blanck">
+                <a href="https://github.com/MuhammadHamzaFarooq" target="_blank">
                     <img src="https://avatars.githubusercontent.com/u/56512212?v=4" width="100px" height="100px"
                     alt="Muhammad hamza Farooq" style="border-radius: 50%;">
                 </a>
-                <a href="https://github.com/jayinc" target="_blanck"></a>
+                <a href="https://github.com/jayinc" target="_blank">
                 <img src="https://avatars.githubusercontent.com/u/12969720?v=4" width="100px" height="100px"
-                    alt="salil Bahi" style="border-radius: 50%;">
+                    alt="salil Bahi" style="border-radius: 50%; cursor: pointer;">
                 </a>
             </h1>
 
@@ -213,7 +212,7 @@
     getAllPosts();
 
     const deleteAllPost = () => {
-        axios.get("localhost:3000/posts").then((res)=>{
+        axios.get("https://first--server.herokuapp.com/delete").then((res)=>{
             console.log(res)
         })
         .catch((e)=>{

@@ -95,6 +95,19 @@ app.delete("/post/:id", (req, res) => {
   });
 });
 
+
+// Delete All Post
+app.delete("/delete", (req, res) => {
+  User.deleteMany((err) => {
+    if (!err) {
+      return res.send("All Post Deleted Successfully 🙌");
+    } else {
+      return res.send("Couldn't delete All post. Something went Wrong 😥");
+    }
+  });
+});
+
+
 // Update Post
 app.put("/post/:id", (req, res) => {
   User.findOneAndUpdate(
