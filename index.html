@@ -21,17 +21,15 @@
 
     <!-- Axios CDN -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
     <title>TweetDeck</title>
 </head>
 
 <body>
     <div class="container-fluid" style="width: 100%; height: 100vh;">
-        <div class="row"
-            style="  text-align: center; padding-top: 5px; margin: 5px 2px; border-radius: 20px; margin-bottom: 20px; margin-top: 20px;">
+        <div class="row" style="  text-align: center; padding-top: 5px;   margin-bottom: 20px; ">
             <div class="col">
                 <h1
-                    style=" font-family: 'Inter', sans-serif; font-size: 3rem; padding: 20px 0px; border-radius: 10px; background-color: rgba(220, 220, 220, 0.335) ; border-width: 5px;">
+                    style=" font-family: 'Inter', sans-serif; font-size: 3rem; padding: 20px 0px; border-radius: 10px; background-color: rgba(220, 220, 220, 0.335) ;">
                     TWEET DECK
                 </h1>
 
@@ -52,28 +50,23 @@
                     <li class="nav-item " style="margin-left: 10px;">
                         <button class="nav-link" id="btn-refresh"
                             style="font-size: 10px; cursor: pointer; background-color: #0dcaf0; color: white; border-radius: 30%; ">
-                            <img  src="https://img.icons8.com/ios-filled/452/cloud-sync--v1.png" width="22px" height="28px" alt="Delete All Post"
+                            <img src="https://img.icons8.com/ios-filled/452/cloud-sync--v1.png" width="22px"
+                                height="28px" alt="Delete All Post"
                                 style="display: inline; color: white !important; "></button>
                     </li>
                     <li class="nav-item " style="margin-left: 10px;">
                         <button class="nav-link" id="btn-delete"
                             style="font-size: 10px; cursor: pointer; background-color: #0dcaf0; color: white; border-radius: 30%; ">
-                            <img  src="https://img.icons8.com/ios-filled/50/000000/delete-database.png" width="22px" height="28px" alt="Delete All Post"
+                            <img src="https://img.icons8.com/ios-filled/50/000000/delete-database.png" width="22px"
+                                height="28px" alt="Delete All Post"
                                 style="display: inline; color: white !important; "></button>
                     </li>
                 </ul>
             </nav>
-            <!-- class="scrollspy-example" -->
 
-            <!-- <div class="scrollbar scrollbar-lady-lips">
-                <div class="force-overflow"
-                    style="border: 1px solid gray; border-radius: 10px; padding: 20px;  height: 80%; overflow-y:scroll;"
-                    id="postTable">
-                </div>
-            </div> -->
-            <div   data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollbar scrollbar-lady-lips"
+            <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example"
                 tabindex="0"
-                style="border: 1px solid gray; border-radius: 10px; padding: 20px;  height: 80%; overflow-y:scroll; "
+                style="border: 1px solid gray; border-radius: 10px; padding: 20px;  height: 80%; overflow-y:scroll;"
                 id="postTable">
             </div>
         </div>
@@ -144,7 +137,7 @@
 <script>
     let postBtn = document.getElementById("btn-post");
     let refreshBtn = document.getElementById("btn-refresh");
-    let deleteAllPostBtn = document.getElementById("deleteAllPostBtn");
+    let deleteAllPostBtn = document.getElementById("btn-delete");
 
     const createPost = () => {
         let title = document.getElementById("title");
@@ -159,6 +152,7 @@
                 .post("https://first--server.herokuapp.com/post", newPost)
                 .then((res) => {
                     console.log(res);
+                   getAllPosts();
                 })
                 .catch((e) => {
                     console.log(e);
@@ -166,6 +160,7 @@
 
             title.value = " ";
             desc.value = " ";
+         
         } else {
             alert("Please Enter Title . Empty Title Not Allowed ! 🤦‍♂️");
         }
@@ -191,10 +186,6 @@
                     desc = data[key].description;
                     date = data[key].createdOn;
                     _id = data[key]._id;
-
-                    data.map((data, index) => {
-                        console.log(data, index)
-                    })
 
                     html += `
                 <tr>
@@ -224,12 +215,12 @@
     getAllPosts();
 
     const deleteAllPost = () => {
-        axios.get("https://first--server.herokuapp.com/delete").then((res) => {
+        axios.delete("https://first--server.herokuapp.com/delete").then((res) => {
             console.log(res)
+            getAllPosts();
+        }).catch((e) => {
+            console.log(e)
         })
-            .catch((e) => {
-                console.log(e)
-            })
     }
 
     deleteAllPostBtn.addEventListener('click', deleteAllPost)
