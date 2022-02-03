@@ -268,18 +268,14 @@
     let deleteAllPostBtn = document.getElementById("btn-delete");
 
     const createPost = () => {
-      let title = document.getElementById("title");
-      let desc = document.getElementById("desc");
-
-      console.log(title, desc);
-
-      if (title != " ") {
+      let title = document.getElementById("title").value;
+      let desc = document.getElementById("desc").value;
+      // console.log(title.value)
+      if (title !== "") {
         let newPost = { title: title.value, description: desc.value };
-
         axios
           .post("https://first--server.herokuapp.com/post", newPost)
           .then((res) => {
-            console.log(res);
             getAllPosts();
           })
           .catch((e) => {
@@ -289,13 +285,15 @@
         title.value = " ";
         desc.value = " ";
       } else {
-        alert(`${data.message}`); // TODO Alert not working yet
+        alert(`"Please Enter Title Empty Title not allowed"`); // TODO Alert not working yet
+        // console.log("Please Enter Title Empty Title not allowed")
       }
     };
 
     postBtn.addEventListener("click", createPost);
 
     const getAllPosts = () => {
+      console.log("Get All Post")
       axios
         .get("https://first--server.herokuapp.com/posts")
         .then((res) => {
@@ -325,7 +323,8 @@
                     </div>
                     <div class="card-header" style="cursor: pointer; ">
                         <span class="card-text">${date}</span>
-                        <span><i class="far fa-edit" style="margin-left:21rem"></i></span> <span ><i class="fas fa-trash"  style="margin-left:6px"></i></span></div>
+                        <span onclick="edit()"><i class="far fa-edit" style="margin-left:21rem"></i></span>
+                     <span onclick="del('${_id}')" ><i class="fas fa-trash"  style="margin-left:6px"></i></span></div>
                 </div>
                     </td>
                 </tr>
@@ -354,5 +353,14 @@
     };
 
     deleteAllPostBtn.addEventListener("click", deleteAllPost);
+
+    const edit =()=>{
+        console.log("edit click")
+    }
+    const del =(id)=>{
+        console.log("del click    "+id)
+        axios.delelte('https://first--server.herokuapp.com/post/:${id}')
+    }
+
   </script>
 </html>
